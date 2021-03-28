@@ -1,0 +1,49 @@
+problem states that count the maximum depth of matching brackets,{ for example, for () depth is 1, for (()) and (()()) depth is 2 so on} and max_count:if there are 2 max depths then
+the depth which has maximum number of brackets (outer included) for example if we have 2 strings (()) and (()()) then max_count is 6 for (()()), depth_loc is the location where starting
+bracket of first max_depth is achieved, count_loc is starting bracket index where max_count is first achieved
+input: N=20
+       1 2 1 1 2 2 1 2 1 1 2 1 2 2 1 1 2 1 2 2
+output:
+       2 4 6 9
+
+
+
+
+```
+#include <iostream>
+using namespace std;
+
+int main() {
+	int N, depth_loc,bracketStart, count_loc, max_depth=0, depth =0, count=0, max_count =0;
+	cin>>N;
+	int A[N];
+	for(int i=0;i<N;i++){
+	    cin>>A[i];
+	}
+	for(int x=1;x<=N;x++){
+	    if(!depth){
+	        count =0;
+	        bracketStart= x;
+	    }
+	    if(A[x-1]==1){
+	        depth++;
+	        count++;
+	    }
+	    else{
+	        depth--;
+	        count ++;
+	    }
+	    if(depth>max_depth){
+	        max_depth=depth;
+	        depth_loc = x;
+	    }
+	    if(count>max_count){
+	        max_count=count;
+	        count_loc = bracketStart;
+	    }
+	}
+	cout<<max_depth<<" "<<depth_loc<<" "<<max_count<<" "<<count_loc<<endl;
+	return 0;
+}
+
+```
